@@ -21,7 +21,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   var url =
-      "https://raw.githubusercontent.com/Biuni/PokemonGO-Pokedex/master/pokedex.json";
+      "https://raw.githubusercontent.com/EricNahon/pikatchuTesOu/master/remotedata/pokedex.json";
 
   PokeDex pokeHub;
   List<Pokemon> selectedPokemon = List<Pokemon>();
