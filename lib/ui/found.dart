@@ -1,6 +1,26 @@
 import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'dart:math';
+import 'package:http/http.dart' as http;
+
 import 'package:maisouestpikachu/constants.dart';
 import 'package:maisouestpikachu/model/pokemon.dart';
+
+victoryRewards rewards;
+String soundRewardUrl;
+String animRewardUrl;
+
+fetchRewards  () async {
+  var res = await http.get(kUrlRewards);
+  var decodedJson = jsonDecode(res.body);
+  rewards = victoryRewards.fromJson(decodedJson);
+
+  print(rewards.toJson());
+
+  var rng = Random();
+  var indexAnim = rng.nextInt(rewards.anim_urls.length);
+  animRewardUrl = rewards.anim_urls[indexAnim];
+}
 
 class FoundPage extends StatelessWidget {
   FoundPage({@required this.pokemon});
@@ -9,6 +29,9 @@ class FoundPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    fetchRewards();
+
     return Scaffold(
       appBar: AppBar(
         title: Text(''),
@@ -30,6 +53,7 @@ class FoundPage extends StatelessWidget {
                   SizedBox(
                     height: 7.0,
                   ),
+
                   Image.asset(
                     'assets/images/VictoryBadge.png',
                     fit: BoxFit.fill,
@@ -46,15 +70,7 @@ class FoundPage extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Hero(
-                    tag: pokemon.img,
-                    child: Container(
-                        child: Image.asset(
-                          'assets/images/pikachu_0.gif',
-                          fit: BoxFit.fill,
-                        ),
-                    ),
-                  ),
+                  Image.network(animRewardUrl),
                 ],
               ),
             ),

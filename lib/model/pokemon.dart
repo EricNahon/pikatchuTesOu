@@ -135,14 +135,29 @@ class victoryRewards {
   victoryRewards({this.anim_urls, this.sound_urls});
 
   victoryRewards.fromJson(Map<String, dynamic> json) {
-    anim_urls = json['anim_urls'];
-    sound_urls = json['sound_urls'];
+    if (json['anim_urls'] != null) {
+      anim_urls = new List<String>();
+      json['anim_urls'].forEach((v) {
+        anim_urls.add(v);
+      });
+    }
+
+    if (json['sound_urls'] != null) {
+      sound_urls = new List<String>();
+      json['sound_urls'].forEach((v) {
+        sound_urls.add(v);
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['anim_urls'] = this.anim_urls;
-    data['anim_urls'] = this.anim_urls;
+    if (this.anim_urls != null) {
+      data['anim_urls'] = this.anim_urls.map((v) => v).toList();
+    }
+    if (this.sound_urls != null) {
+      data['sound_urls'] = this.sound_urls.map((v) => v).toList();
+    }
     return data;
   }
 }

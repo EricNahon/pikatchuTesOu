@@ -13,7 +13,6 @@ import 'package:maisouestpikachu/ui/found.dart';
 class Home extends StatefulWidget {
   final String header;
 
-
   Home({Key key, this.header}) : super(key: key);
 
   @override
@@ -43,12 +42,6 @@ class _HomeState extends State<Home> {
     var res = await http.get(kUrlPokedex);
     var decodedJson = jsonDecode(res.body);
     pokedex = PokeDex.fromJson(decodedJson);
-    print(pokedex.toJson());
-
-    res = await http.get(kUrlRewards);
-    decodedJson = jsonDecode(res.body);
-    rewards = victoryRewards.fromJson(decodedJson);
-    print(rewards.toJson());
 
     var rng = Random();
     distinctPokemons.clear();
