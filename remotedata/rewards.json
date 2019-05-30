@@ -1,0 +1,16 @@
+{
+  "anim_urls": [
+    "https://media.giphy.com/media/MJcf161ptwviU/giphy.gif",
+    "https://media.giphy.com/media/p7BiKEnbmhLgI/giphy.gif",
+    "https://media.giphy.com/media/Hw7O9Np7JpXK8/giphy.gif",
+    "https://media.giphy.com/media/tK9wGsGc72LcznCSeU/source.gif",
+    "https://media.giphy.com/media/zbqKxLQxH5JyE/giphy.gif",
+    "https://media.giphy.com/media/jUPBWA6zX9nBC/giphy.gif"
+  ],
+  "sound_urls": [
+    "https://raw.githubusercontent.com/EricNahon/pikatchuTesOu/master/remotedata/sounds/applause.mp3",
+    "http://s1download-universal-soundbank.com/mp3/sounds/2019.mp3",
+    "http://s1download-universal-soundbank.com/mp3/sounds/2020.mp3",
+    "http://s1download-universal-soundbank.com/mp3/sounds/2616.mp3"
+  ]
+}

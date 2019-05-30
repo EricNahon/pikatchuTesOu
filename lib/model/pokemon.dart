@@ -125,3 +125,24 @@ class NextEvolution {
     return data;
   }
 }
+
+//
+//
+class victoryRewards {
+  List<String> anim_urls;
+  List<String> sound_urls;
+
+  victoryRewards({this.anim_urls, this.sound_urls});
+
+  victoryRewards.fromJson(Map<String, dynamic> json) {
+    anim_urls = json['anim_urls'];
+    sound_urls = json['sound_urls'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['anim_urls'] = this.anim_urls;
+    data['anim_urls'] = this.anim_urls;
+    return data;
+  }
+}

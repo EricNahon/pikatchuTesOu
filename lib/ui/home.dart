@@ -1,9 +1,10 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:audioplayers/audio_cache.dart';
+
+import 'package:maisouestpikachu/constants.dart';
 import 'package:maisouestpikachu/model/pokemon.dart';
 import 'package:maisouestpikachu/ui/details.dart';
 import 'package:maisouestpikachu/ui/search.dart';
@@ -20,10 +21,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  var url =
-      "https://raw.githubusercontent.com/EricNahon/pikatchuTesOu/master/remotedata/pokedex.json";
+  PokeDex pokedex;
+  victoryRewards rewards;
 
-  PokeDex pokeHub;
   List<Pokemon> selectedPokemon = List<Pokemon>();
   List<Pokemon> distinctPokemons = List<Pokemon>();
   int pokemonIndexHiddenPikachu;
@@ -40,28 +40,33 @@ class _HomeState extends State<Home> {
     setState(() {
       _loading = true;
     });
-    var res = await http.get(url);
+    var res = await http.get(kUrlPokedex);
     var decodedJson = jsonDecode(res.body);
-    pokeHub = PokeDex.fromJson(decodedJson);
-    print(pokeHub.toJson());
+    pokedex = PokeDex.fromJson(decodedJson);
+    print(pokedex.toJson());
+
+    res = await http.get(kUrlRewards);
+    decodedJson = jsonDecode(res.body);
+    rewards = victoryRewards.fromJson(decodedJson);
+    print(rewards.toJson());
 
     var rng = Random();
     distinctPokemons.clear();
 
     while(distinctPokemons.length != 6) {
-      var l = List.generate(6, (_) => rng.nextInt(pokeHub.pokemon.length));
+      var l = List.generate(6, (_) => rng.nextInt(pokedex.pokemon.length));
       selectedPokemon.clear();
-      l.forEach((item) => selectedPokemon.add(pokeHub.pokemon[item]));
+      l.forEach((item) => selectedPokemon.add(pokedex.pokemon[item]));
       distinctPokemons = selectedPokemon.toSet().toList();
     }
 
-    pokeHub.pokemon = distinctPokemons;
+    pokedex.pokemon = distinctPokemons;
 
     // hide pikachu somewhere in the list
-    pokemonIndexHiddenPikachu = Random().nextInt(pokeHub.pokemon.length);
-    pokeHub.pokemon[pokemonIndexHiddenPikachu].hidingPikachu = true;
+    pokemonIndexHiddenPikachu = Random().nextInt(pokedex.pokemon.length);
+    pokedex.pokemon[pokemonIndexHiddenPikachu].hidingPikachu = true;
 
-    print(pokeHub.pokemon[pokemonIndexHiddenPikachu].name);
+    print(pokedex.pokemon[pokemonIndexHiddenPikachu].name);
     //
 
     setState(() {
@@ -90,7 +95,7 @@ class _HomeState extends State<Home> {
               onPressed: () {
                 showSearch(
                   context: context,
-                  delegate: PokeSearch(pokeHub: pokeHub),
+                  delegate: PokeSearch(pokeHub: pokedex),
                 );
               })
         ],
@@ -126,7 +131,7 @@ class _HomeState extends State<Home> {
             )
           : GridView.count(
               crossAxisCount: 2,
-              children: pokeHub.pokemon
+              children: pokedex.pokemon
                   .map((poke) => Padding(
                         padding: const EdgeInsets.all(2.0),
                         child: InkWell(

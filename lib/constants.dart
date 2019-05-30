@@ -5,6 +5,9 @@ const kActiveCardColour = Color(0xFF1D1E33);
 const kInactiveCardColour = Color(0xFF111328);
 const kBottomContainerColour = Color(0xFFEB1555);
 
+const String kUrlPokedex = "https://raw.githubusercontent.com/EricNahon/pikatchuTesOu/master/remotedata/pokedex.json";
+const String kUrlRewards = "https://raw.githubusercontent.com/EricNahon/pikatchuTesOu/master/remotedata/rewards.json";
+
 const kLabelTextStyle = TextStyle (
   fontSize: 18.0,
   color: Color(0xFF8D8E98),
