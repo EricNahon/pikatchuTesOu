@@ -100,9 +100,8 @@ class _HomeState extends State<Home> {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ListTile(
-                title: Text("Où est passé Pikachu?",
-                    style:
-                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                title: Text(kTitle,
+                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
               ),
             ),
             ListTile(

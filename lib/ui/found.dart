@@ -5,6 +5,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:maisouestpikachu/constants.dart';
 import 'package:maisouestpikachu/model/pokemon.dart';
+import 'package:maisouestpikachu/ui/draw_horizontal_line.dart';
 
 victoryRewards rewards;
 String soundRewardUrl;
@@ -29,48 +30,33 @@ class FoundPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     fetchRewards();
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(''),
+        title: Center(child: Text('Bravo !', textAlign: TextAlign.center)),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Expanded(
-            child: Container(
-              padding: EdgeInsets.all(15.0),
-              alignment: Alignment.center,
-              child: Column(
-                children: <Widget>[
-                  Text(
-                    'Bravo !',
-                    style: kTitleTextStyle,
-                  ),
-                  SizedBox(
-                    height: 7.0,
-                  ),
-
-                  Image.asset(
-                    'assets/images/VictoryBadge.png',
-                    fit: BoxFit.fill,
-                    width: 50.0,
-                    height: 50.0,
-                  ),
-                ],
-              ),
+            flex: 1,
+            child: Image.asset(
+              'assets/images/pikachu.gif',
+              fit: BoxFit.fill,
+              width: 40.0,
+              height: 40.0,
             ),
           ),
+          Divider(height: 1.0),
           Expanded(
             flex: 3,
             child: Card(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  Image.network(animRewardUrl),
+                  Image.network(animRewardUrl != null ? animRewardUrl : kDefaultUrlReward)
                 ],
               ),
             ),

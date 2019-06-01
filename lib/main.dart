@@ -5,7 +5,7 @@ void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
 
-  final title = "Mais où est passé Pikachu ?";
+  final title = "Pikachu t'es où ?";
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
