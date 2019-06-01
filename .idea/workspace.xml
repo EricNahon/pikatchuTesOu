@@ -2,21 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d0787ca6-2189-46e8-ad65-506573bde6e6" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/lib/ui/draw_horizontal_line.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/4.10.2/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/android/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/Bulbasaur.gif" beforeDir="false" afterPath="$PROJECT_DIR$/remotedata/images/Bulbasaur.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/pikachu_0.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/images/pikachu_1.gif" beforeDir="false" afterPath="$PROJECT_DIR$/assets/images/pikachu.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/constants.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/constants.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/main.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/found.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/found.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/ui/home.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/ui/home.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/remotedata/rewards.json" beforeDir="false" afterPath="$PROJECT_DIR$/remotedata/rewards.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -40,7 +30,7 @@
         <entry file="file://$PROJECT_DIR$/lib/ui/home.dart">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="47">
-              <caret line="112" column="14" lean-forward="true" selection-start-line="112" selection-start-column="14" selection-end-line="112" selection-end-column="14" />
+              <caret line="112" column="14" selection-start-line="112" selection-start-column="14" selection-end-line="112" selection-end-column="14" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
               </folding>
@@ -86,8 +76,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/lib/constants.dart">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="12" column="132" selection-start-line="12" selection-start-column="132" selection-end-line="12" selection-end-column="132" />
+            <state relative-caret-position="645">
+              <caret line="43" column="2" lean-forward="true" selection-start-line="43" selection-start-column="2" selection-end-line="43" selection-end-column="2" />
             </state>
           </provider>
         </entry>
@@ -367,7 +357,7 @@
     <entry file="file://$PROJECT_DIR$/lib/ui/home.dart">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="47">
-          <caret line="112" column="14" lean-forward="true" selection-start-line="112" selection-start-column="14" selection-end-line="112" selection-end-column="14" />
+          <caret line="112" column="14" selection-start-line="112" selection-start-column="14" selection-end-line="112" selection-end-column="14" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
           </folding>
@@ -386,8 +376,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/lib/constants.dart">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="12" column="132" selection-start-line="12" selection-start-column="132" selection-end-line="12" selection-end-column="132" />
+        <state relative-caret-position="645">
+          <caret line="43" column="2" lean-forward="true" selection-start-line="43" selection-start-column="2" selection-end-line="43" selection-end-column="2" />
         </state>
       </provider>
     </entry>
