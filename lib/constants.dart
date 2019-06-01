@@ -9,7 +9,6 @@ const String kTitle = "Pikachu t'es où ?";
 
 const String kUrlPokedex = "https://raw.githubusercontent.com/EricNahon/pikatchuTesOu/master/remotedata/pokedex.json";
 const String kUrlRewards = "https://raw.githubusercontent.com/EricNahon/pikatchuTesOu/master/remotedata/rewards.json";
-
 const String kDefaultUrlReward = "https://raw.githubusercontent.com/EricNahon/pikatchuTesOu/master/remotedata/images/Bulbasaur.gif";
 
 const kLabelTextStyle = TextStyle (

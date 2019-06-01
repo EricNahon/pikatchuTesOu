@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:maisouestpikachu/model/pokemon.dart';
-import 'package:maisouestpikachu/ui/details.dart';
+
+import 'package:pikachutou/model/pokemon.dart';
+import 'package:pikachutou/ui/details.dart';
 
 class PokeSearch extends SearchDelegate {
 

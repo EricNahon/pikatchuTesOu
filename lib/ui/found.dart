@@ -1,37 +1,30 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
-import 'dart:math';
-import 'package:http/http.dart' as http;
+import 'package:transparent_image/transparent_image.dart';
 
-import 'package:maisouestpikachu/constants.dart';
-import 'package:maisouestpikachu/model/pokemon.dart';
-import 'package:maisouestpikachu/ui/draw_horizontal_line.dart';
+import 'package:pikachutou/model/pokemon.dart';
 
-victoryRewards rewards;
-String soundRewardUrl;
-String animRewardUrl;
-
-fetchRewards  () async {
-  var res = await http.get(kUrlRewards);
-  var decodedJson = jsonDecode(res.body);
-  rewards = victoryRewards.fromJson(decodedJson);
-
-  print(rewards.toJson());
-
-  var rng = Random();
-  var indexAnim = rng.nextInt(rewards.anim_urls.length);
-  animRewardUrl = rewards.anim_urls[indexAnim];
-}
-
-class FoundPage extends StatelessWidget {
-  FoundPage({@required this.pokemon});
+class FoundPage extends StatefulWidget {
+  FoundPage({@required this.pokemon, @required this.animRewardUrl});
 
   final Pokemon pokemon;
+  final String animRewardUrl;
+
+  @override
+  _FoundPageState createState() => _FoundPageState(animRewardUrl: animRewardUrl);
+}
+
+class _FoundPageState extends State<FoundPage> {
+  _FoundPageState({this.animRewardUrl});
+
+  String animRewardUrl;
+
+  @override
+  void initState() {
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    fetchRewards();
-
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Text('Bravo !', textAlign: TextAlign.center)),
@@ -52,13 +45,16 @@ class FoundPage extends StatelessWidget {
           Divider(height: 1.0),
           Expanded(
             flex: 3,
-            child: Card(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Image.network(animRewardUrl != null ? animRewardUrl : kDefaultUrlReward)
-                ],
-              ),
+            child: Stack(
+              children: <Widget>[
+                Center(child: CircularProgressIndicator()),
+                Center(
+                  child: FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage,
+                    image: animRewardUrl,
+                  ),
+                ),
+              ],
             ),
           ),
         ],

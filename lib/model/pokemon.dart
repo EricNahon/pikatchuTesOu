@@ -128,35 +128,35 @@ class NextEvolution {
 
 //
 //
-class victoryRewards {
-  List<String> anim_urls;
-  List<String> sound_urls;
+class VictoryRewards {
+  List<String> animUrls;
+  List<String> soundUrls;
 
-  victoryRewards({this.anim_urls, this.sound_urls});
+  VictoryRewards({this.animUrls, this.soundUrls});
 
-  victoryRewards.fromJson(Map<String, dynamic> json) {
+  VictoryRewards.fromJson(Map<String, dynamic> json) {
     if (json['anim_urls'] != null) {
-      anim_urls = new List<String>();
+      animUrls = new List<String>();
       json['anim_urls'].forEach((v) {
-        anim_urls.add(v);
+        animUrls.add(v);
       });
     }
 
     if (json['sound_urls'] != null) {
-      sound_urls = new List<String>();
+      soundUrls = new List<String>();
       json['sound_urls'].forEach((v) {
-        sound_urls.add(v);
+        soundUrls.add(v);
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.anim_urls != null) {
-      data['anim_urls'] = this.anim_urls.map((v) => v).toList();
+    if (this.animUrls != null) {
+      data['anim_urls'] = this.animUrls.map((v) => v).toList();
     }
-    if (this.sound_urls != null) {
-      data['sound_urls'] = this.sound_urls.map((v) => v).toList();
+    if (this.soundUrls != null) {
+      data['sound_urls'] = this.soundUrls.map((v) => v).toList();
     }
     return data;
   }

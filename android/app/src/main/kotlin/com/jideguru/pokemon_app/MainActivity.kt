@@ -1,4 +1,4 @@
-package com.jideguru.pokemon_app
+package net.ericnahon.pikachutou
 
 import android.os.Bundle
 

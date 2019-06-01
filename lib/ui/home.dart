@@ -4,11 +4,11 @@ import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:audioplayers/audio_cache.dart';
 
-import 'package:maisouestpikachu/constants.dart';
-import 'package:maisouestpikachu/model/pokemon.dart';
-import 'package:maisouestpikachu/ui/details.dart';
-import 'package:maisouestpikachu/ui/search.dart';
-import 'package:maisouestpikachu/ui/found.dart';
+import 'package:pikachutou/constants.dart';
+import 'package:pikachutou/model/pokemon.dart';
+import 'package:pikachutou/ui/details.dart';
+import 'package:pikachutou/ui/search.dart';
+import 'package:pikachutou/ui/found.dart';
 
 class Home extends StatefulWidget {
   final String header;
@@ -21,7 +21,9 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   PokeDex pokedex;
-  victoryRewards rewards;
+  VictoryRewards rewards;
+  String soundRewardUrl;
+  String animRewardUrl;
 
   List<Pokemon> selectedPokemon = List<Pokemon>();
   List<Pokemon> distinctPokemons = List<Pokemon>();
@@ -39,6 +41,8 @@ class _HomeState extends State<Home> {
     setState(() {
       _loading = true;
     });
+
+    // load Pokedex
     var res = await http.get(kUrlPokedex);
     var decodedJson = jsonDecode(res.body);
     pokedex = PokeDex.fromJson(decodedJson);
@@ -59,8 +63,13 @@ class _HomeState extends State<Home> {
     pokemonIndexHiddenPikachu = Random().nextInt(pokedex.pokemon.length);
     pokedex.pokemon[pokemonIndexHiddenPikachu].hidingPikachu = true;
 
-    print(pokedex.pokemon[pokemonIndexHiddenPikachu].name);
-    //
+    // load awards
+    res = await http.get(kUrlRewards);
+    decodedJson = jsonDecode(res.body);
+    rewards = VictoryRewards.fromJson(decodedJson);
+
+    var indexAnim = rng.nextInt(rewards.animUrls.length);
+    animRewardUrl = rewards.animUrls[indexAnim];
 
     setState(() {
       _loading = false;
@@ -184,7 +193,7 @@ class _HomeState extends State<Home> {
           context,
           MaterialPageRoute(
               builder: (context) => FoundPage(
-                pokemon: poke,
+                pokemon: poke, animRewardUrl: animRewardUrl,
               )));
     }
   }

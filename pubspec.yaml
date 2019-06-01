@@ -1,7 +1,7 @@
-name: maisouestpikachu
+name: pikachutou
 description: A game to find Pikachu.
 
-version: 1.0.0+1
+version: 0.2.0+1
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -10,10 +10,9 @@ dependencies:
   flutter:
     sdk: flutter
 
-  # The following adds the Cupertino Icons font to your application.
-  # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   audioplayers: ^0.12.0
+  transparent_image: ^1.0.0
   http:
 
 dev_dependencies:
@@ -22,13 +21,8 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-
-  # The following line ensures that the Material Icons font is
-  # included with your application, so that you can use the icons in
-  # the material Icons class.
   uses-material-design: true
 
-  # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/
     - assets/sounds/

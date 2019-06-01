@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:maisouestpikachu/ui/home.dart';
+
+import 'package:pikachutou/constants.dart';
+import 'package:pikachutou/ui/home.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
 
-  final title = "Pikachu t'es où ?";
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "$title",
+      title: kTitle,
       debugShowCheckedModeBanner: false,
       home: Home(
-        header: "$title",
+        header: kTitle,
       ),
 
       theme: ThemeData(
