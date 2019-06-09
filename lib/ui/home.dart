@@ -1,83 +1,35 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:audioplayers/audio_cache.dart';
 
 import 'package:pikachutou/constants.dart';
-import 'package:pikachutou/model/pokemon.dart';
-import 'package:pikachutou/ui/details.dart';
-import 'package:pikachutou/ui/search.dart';
-import 'package:pikachutou/ui/found.dart';
+import 'package:pikachutou/app_state.dart';
+import 'poke_quizz.dart';
+import 'search.dart';
 
 class Home extends StatefulWidget {
-  final String header;
-
   Home({Key key, this.header}) : super(key: key);
+
+  final String header;
+  static AudioCache player = AudioCache();
 
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  PokeDex pokedex;
-  VictoryRewards rewards;
-  String soundRewardUrl;
-  String animRewardUrl;
-
-  List<Pokemon> selectedPokemon = List<Pokemon>();
-  List<Pokemon> distinctPokemons = List<Pokemon>();
-  int pokemonIndexHiddenPikachu;
-  bool _loading = true;
-  static AudioCache player = AudioCache();
-
   @override
   void initState() {
     super.initState();
-    fetchData();
-  }
-
-  fetchData() async {
-    setState(() {
-      _loading = true;
-    });
-
-    // load Pokedex
-    var res = await http.get(kUrlPokedex);
-    var decodedJson = jsonDecode(res.body);
-    pokedex = PokeDex.fromJson(decodedJson);
-
-    var rng = Random();
-    distinctPokemons.clear();
-
-    while(distinctPokemons.length != 6) {
-      var l = List.generate(6, (_) => rng.nextInt(pokedex.pokemon.length));
-      selectedPokemon.clear();
-      l.forEach((item) => selectedPokemon.add(pokedex.pokemon[item]));
-      distinctPokemons = selectedPokemon.toSet().toList();
-    }
-
-    pokedex.pokemon = distinctPokemons;
-
-    // hide pikachu somewhere in the list
-    pokemonIndexHiddenPikachu = Random().nextInt(pokedex.pokemon.length);
-    pokedex.pokemon[pokemonIndexHiddenPikachu].hidingPikachu = true;
-
-    // load awards
-    res = await http.get(kUrlRewards);
-    decodedJson = jsonDecode(res.body);
-    rewards = VictoryRewards.fromJson(decodedJson);
-
-    var indexAnim = rng.nextInt(rewards.animUrls.length);
-    animRewardUrl = rewards.animUrls[indexAnim];
-
-    setState(() {
-      _loading = false;
-    });
   }
 
   @override
   Widget build(BuildContext context) {
+    final appState = Provider.of<AppState>(context);
+
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       //AppBar
@@ -97,7 +49,7 @@ class _HomeState extends State<Home> {
               onPressed: () {
                 showSearch(
                   context: context,
-                  delegate: PokeSearch(pokeHub: pokedex),
+                  delegate: PokeSearch(pokeHub: appState.pokeDex),
                 );
               })
         ],
@@ -110,7 +62,8 @@ class _HomeState extends State<Home> {
               padding: const EdgeInsets.all(8.0),
               child: ListTile(
                 title: Text(kTitle,
-                    style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
               ),
             ),
             ListTile(
@@ -124,78 +77,14 @@ class _HomeState extends State<Home> {
         ),
       ),
 
-      body: _loading
+      body: appState.isFetching
           ? Center(
               child: CircularProgressIndicator(
                 valueColor: new AlwaysStoppedAnimation<Color>(Colors.cyan),
               ),
             )
-          : GridView.count(
-              crossAxisCount: 2,
-              children: pokedex.pokemon
-                  .map((poke) => Padding(
-                        padding: const EdgeInsets.all(2.0),
-                        child: InkWell(
-                          onTap: () {
-                            checkHiddenPikachu(poke, player);
-                          },
-                          child: Card(
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Hero(
-                                  tag: poke.img,
-                                  child: Container(
-                                    height: 100.0,
-                                    width: 100.0,
-                                    decoration: BoxDecoration(
-                                        image: DecorationImage(
-                                            image: NetworkImage(poke.img))),
-                                  ),
-                                ),
-                                Text(
-                                  poke.name,
-                                  style: TextStyle(
-                                    fontSize: 20.0,
-                                    fontWeight: FontWeight.bold,
-                                  ),
-                                )
-                              ],
-                            ),
-                          ),
-                        ),
-                      ))
-                  .toList(),
-            ),
-      //FAB
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          fetchData();
-        },
-        backgroundColor: Colors.cyan,
-        child: Icon(Icons.refresh),
-      ),
+          : PokeQuizz(),
     );
-  }
-
-  checkHiddenPikachu(Pokemon poke, AudioCache victorySound) {
-
-    if (!poke.hidingPikachu) {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => Details(
-                pokemon: poke,
-              )));
-    } else {
-      victorySound.play('sounds/applause.mp3');
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => FoundPage(
-                pokemon: poke, animRewardUrl: animRewardUrl,
-              )));
-    }
   }
 
   //Function to Show Alert Dialog for showing app details

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
+import 'package:pikachutou/app_state.dart';
 import 'package:pikachutou/model/pokemon.dart';
 
 class FoundPage extends StatefulWidget {
@@ -10,13 +12,10 @@ class FoundPage extends StatefulWidget {
   final String animRewardUrl;
 
   @override
-  _FoundPageState createState() => _FoundPageState(animRewardUrl: animRewardUrl);
+  _FoundPageState createState() => _FoundPageState();
 }
 
 class _FoundPageState extends State<FoundPage> {
-  _FoundPageState({this.animRewardUrl});
-
-  String animRewardUrl;
 
   @override
   void initState() {
@@ -25,6 +24,8 @@ class _FoundPageState extends State<FoundPage> {
 
   @override
   Widget build(BuildContext context) {
+    AppState appState = Provider.of<AppState>(context);
+
     return Scaffold(
       appBar: AppBar(
         title: Center(child: Text('Bravo !', textAlign: TextAlign.center)),
@@ -51,7 +52,7 @@ class _FoundPageState extends State<FoundPage> {
                 Center(
                   child: FadeInImage.memoryNetwork(
                     placeholder: kTransparentImage,
-                    image: animRewardUrl,
+                    image: appState.animRewardUrl,
                   ),
                 ),
               ],

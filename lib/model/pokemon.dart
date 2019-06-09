@@ -1,7 +1,8 @@
-class PokeDex {
-  List<Pokemon> pokemon;
 
+class PokeDex {
   PokeDex({this.pokemon});
+
+  List<Pokemon> pokemon;
 
   PokeDex.fromJson(Map<String, dynamic> json) {
     if (json['pokemon'] != null) {
@@ -42,21 +43,21 @@ class Pokemon {
 
   Pokemon(
       {this.id,
-        this.num,
-        this.name,
-        this.img,
-        this.type,
-        this.height,
-        this.weight,
-        this.candy,
-        this.candyCount,
-        this.egg,
-        this.spawnChance,
-        this.avgSpawns,
-        this.spawnTime,
-        this.multipliers,
-        this.weaknesses,
-        this.nextEvolution});
+      this.num,
+      this.name,
+      this.img,
+      this.type,
+      this.height,
+      this.weight,
+      this.candy,
+      this.candyCount,
+      this.egg,
+      this.spawnChance,
+      this.avgSpawns,
+      this.spawnTime,
+      this.multipliers,
+      this.weaknesses,
+      this.nextEvolution});
 
   Pokemon.fromJson(Map<String, dynamic> json) {
     id = json['id'];
