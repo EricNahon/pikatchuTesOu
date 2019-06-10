@@ -1,4 +1,4 @@
-package net.ericnahon.pikachutou
+package net.ericnahon.pikateou
 
 import android.os.Bundle
 
