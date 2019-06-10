@@ -57,6 +57,7 @@ class PokemonList extends StatelessWidget {
 
   checkHiddenPikachu(BuildContext ctx, Pokemon poke, AudioCache victorySound) {
     if (!poke.hidingPikachu) {
+      victorySound.play('sounds/PikaPala02.mp3');
       Navigator.push(
         ctx,
         MaterialPageRoute(

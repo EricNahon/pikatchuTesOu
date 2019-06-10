@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:audioplayers/audio_cache.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:math';
@@ -10,6 +11,8 @@ class AppState with ChangeNotifier {
   AppState() {
     fetchData();
   }
+
+  static AudioCache player = AudioCache();
 
   PokeDex _pokeDex;
   PokeDex get pokeDex => _pokeDex;
@@ -95,6 +98,8 @@ class AppState with ChangeNotifier {
     if (_pokeDex != null) {
       print(_pokeDex.pokemon[0].name);
     }
+
+    player.play('sounds/PikachuTeOu01.mp3');
 
     notifyListeners();
   }
