@@ -1,7 +1,7 @@
 name: pikachutou
 description: A find Pikachu game
 
-version: 0.2.1
+version: 0.2.2
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -13,6 +13,7 @@ dependencies:
   cupertino_icons: ^0.1.2
   audioplayers: ^0.12.0
   transparent_image: ^1.0.0
+  package_info: ^0.4.0+4
   provider: ^3.0.0
   http:
 

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:pikachutou/app_state.dart';
-import 'package:pikachutou/constants.dart';
-import 'package:pikachutou/ui/home.dart';
+import 'model/app_state.dart';
+import 'model/constants.dart';
+import 'ui/pages/home_page.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(Application());
 
-class MyApp extends StatelessWidget {
-
+class Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
@@ -16,10 +15,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: kTitle,
         debugShowCheckedModeBanner: false,
-        home: Home(
+        home: HomePage(
           header: kTitle,
         ),
-
         theme: ThemeData(
           brightness: Brightness.light,
           primaryColor: Colors.cyan,
@@ -28,17 +26,15 @@ class MyApp extends StatelessWidget {
             headline: TextStyle(
 //              fontSize: 72.0,
 //              fontWeight: FontWeight.bold,
-            ),
+                ),
             title: TextStyle(
 //              fontSize: 36.0,
 //              fontStyle: FontStyle.italic,
-                color: Colors.black
-            ),
+                color: Colors.black),
             body1: TextStyle(
 //              fontSize: 14.0,
 //              fontFamily: 'Hind',
-                color: Colors.black
-            ),
+                color: Colors.black),
           ),
         ),
       ),

@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:audioplayers/audio_cache.dart';
 
-import 'package:pikachutou/app_state.dart';
-import 'package:pikachutou/model/pokemon.dart';
-import 'found.dart';
-import 'details.dart';
+import 'package:pikachutou/model/app_state.dart';
+import '../../model/pokemon.dart';
+import '../pages/found_page.dart';
+import '../pages/details.dart';
 
 class PokemonList extends StatelessWidget {
   static AudioCache player = AudioCache();

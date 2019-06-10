@@ -5,7 +5,7 @@ import 'dart:convert';
 import 'dart:math';
 
 import 'constants.dart';
-import 'model/pokemon.dart';
+import 'pokemon.dart';
 
 class AppState with ChangeNotifier {
   AppState() {

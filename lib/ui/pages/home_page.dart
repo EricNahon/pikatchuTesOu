@@ -1,26 +1,24 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'dart:math';
-import 'package:http/http.dart' as http;
 import 'package:audioplayers/audio_cache.dart';
 
-import 'package:pikachutou/constants.dart';
-import 'package:pikachutou/app_state.dart';
-import 'poke_quizz.dart';
-import 'search.dart';
+import 'package:pikachutou/model/constants.dart';
+import 'package:pikachutou/model/app_state.dart';
+import '../components/poke_quizz.dart';
+import '../components/circular_progress.dart';
+import 'search_page.dart';
 
-class Home extends StatefulWidget {
-  Home({Key key, this.header}) : super(key: key);
+class HomePage extends StatefulWidget {
+  HomePage({Key key, this.header}) : super(key: key);
 
   final String header;
   static AudioCache player = AudioCache();
 
   @override
-  _HomeState createState() => _HomeState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _HomeState extends State<Home> {
+class _HomePageState extends State<HomePage> {
   @override
   void initState() {
     super.initState();
@@ -77,13 +75,7 @@ class _HomeState extends State<Home> {
         ),
       ),
 
-      body: appState.isFetching
-          ? Center(
-              child: CircularProgressIndicator(
-                valueColor: new AlwaysStoppedAnimation<Color>(Colors.cyan),
-              ),
-            )
-          : PokeQuizz(),
+      body: appState.isFetching ? CircularProgress() : PokeQuizz(),
     );
   }
 

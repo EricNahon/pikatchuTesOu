@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:pikachutou/model/pokemon.dart';
+import '../../model/pokemon.dart';
 
 class Details extends StatefulWidget {
   final Pokemon pokemon;
