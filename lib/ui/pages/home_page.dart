@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:audioplayers/audio_cache.dart';
 
-import 'package:pikachutou/model/constants.dart';
-import 'package:pikachutou/model/app_state.dart';
+import '../../model/constants.dart';
+import '../../model/app_state.dart';
 import '../components/poke_quizz.dart';
 import '../components/circular_progress.dart';
-import 'search_page.dart';
+import 'about_page.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.header}) : super(key: key);
@@ -45,9 +45,11 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.search),
               color: Colors.white,
               onPressed: () {
-                showSearch(
-                  context: context,
-                  delegate: PokeSearch(pokeHub: appState.pokeDex),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AboutPage(),
+                  ),
                 );
               })
         ],

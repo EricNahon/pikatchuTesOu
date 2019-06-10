@@ -1,22 +1,22 @@
 
 class PokeDex {
-  PokeDex({this.pokemon});
+  PokeDex({this.pokemons});
 
-  List<Pokemon> pokemon;
+  List<Pokemon> pokemons;
 
   PokeDex.fromJson(Map<String, dynamic> json) {
     if (json['pokemon'] != null) {
-      pokemon = new List<Pokemon>();
+      pokemons = new List<Pokemon>();
       json['pokemon'].forEach((v) {
-        pokemon.add(new Pokemon.fromJson(v));
+        pokemons.add(new Pokemon.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    if (this.pokemon != null) {
-      data['pokemon'] = this.pokemon.map((v) => v.toJson()).toList();
+    if (this.pokemons != null) {
+      data['pokemon'] = this.pokemons.map((v) => v.toJson()).toList();
     }
     return data;
   }

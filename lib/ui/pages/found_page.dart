@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-import 'package:pikachutou/model/app_state.dart';
+import '../../model/app_state.dart';
 import '../../model/pokemon.dart';
 
 class FoundPage extends StatefulWidget {

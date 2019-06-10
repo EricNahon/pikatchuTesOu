@@ -2,16 +2,16 @@ import 'package:flutter/material.dart';
 
 import '../../model/pokemon.dart';
 
-class Details extends StatefulWidget {
+class DetailsPage extends StatefulWidget {
   final Pokemon pokemon;
 
-  Details({this.pokemon});
+  DetailsPage({this.pokemon});
 
   @override
-  _DetailsState createState() => _DetailsState();
+  _DetailsPageState createState() => _DetailsPageState();
 }
 
-class _DetailsState extends State<Details> {
+class _DetailsPageState extends State<DetailsPage> {
   bodyWidget(BuildContext context) => Stack(
         children: <Widget>[
           Positioned(

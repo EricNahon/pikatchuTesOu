@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'package:pikachutou/model/app_state.dart';
-import 'package:pikachutou/ui/components/pokemon_list.dart';
+import '../../model/app_state.dart';
+import 'pokemon_list.dart';
 
 class PokeQuizz extends StatelessWidget {
   @override

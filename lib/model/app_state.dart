@@ -72,18 +72,18 @@ class AppState with ChangeNotifier {
     _distinctPokemons.clear();
 
     while (_distinctPokemons.length != 6) {
-      var l = List.generate(6, (_) => rng.nextInt(_pokeDex.pokemon.length));
+      var l = List.generate(6, (_) => rng.nextInt(_pokeDex.pokemons.length));
       _selectedPokemon.clear();
-      l.forEach((item) => _selectedPokemon.add(_pokeDex.pokemon[item]));
+      l.forEach((item) => _selectedPokemon.add(_pokeDex.pokemons[item]));
       _distinctPokemons = _selectedPokemon.toSet().toList();
     }
 
-    _pokeDex.pokemon = _distinctPokemons;
+    _pokeDex.pokemons = _distinctPokemons;
     //
 
     // hide pikachu somewhere in the list
-    _hidingPikachuCardIndex = Random().nextInt(_pokeDex.pokemon.length);
-    _pokeDex.pokemon[_hidingPikachuCardIndex].hidingPikachu = true;
+    _hidingPikachuCardIndex = Random().nextInt(_pokeDex.pokemons.length);
+    _pokeDex.pokemons[_hidingPikachuCardIndex].hidingPikachu = true;
 
     // load awards
     _response = await http.get(kUrlRewards);
@@ -96,7 +96,7 @@ class AppState with ChangeNotifier {
     //
 
     if (_pokeDex != null) {
-      print(_pokeDex.pokemon[0].name);
+      print(_pokeDex.pokemons[0].name);
     }
 
     player.play('sounds/PikachuTeOu01.mp3');

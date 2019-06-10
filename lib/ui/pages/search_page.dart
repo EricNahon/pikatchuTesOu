@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import 'package:pikachutou/model/pokemon.dart';
-import 'package:pikachutou/ui/pages/details.dart';
+import '../../model/pokemon.dart';
+import '../../ui/pages/details_page.dart';
 
 class PokeSearch extends SearchDelegate {
 
@@ -65,7 +65,7 @@ class PokeSearch extends SearchDelegate {
     }
 
     //Search in the json for the query entered
-    var poko = pokeHub.pokemon.where(
+    var poko = pokeHub.pokemons.where(
             (pokee)=> pokee.name.startsWith(query2)
     ).toList();
 
@@ -84,7 +84,7 @@ class PokeSearch extends SearchDelegate {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => Details(
+                      builder: (context) => DetailsPage(
                         pokemon: poko[position],
                       )));
             },
@@ -128,7 +128,7 @@ class PokeSearch extends SearchDelegate {
       query2 = query1[0].toUpperCase() + query1.substring(1);
     }
 
-    var poko = pokeHub.pokemon.where(
+    var poko = pokeHub.pokemons.where(
             (pokee)=> pokee.name.startsWith(query2)
     ).toList();
 
@@ -147,7 +147,7 @@ class PokeSearch extends SearchDelegate {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => Details(
+                      builder: (context) => DetailsPage(
                         pokemon: poko[position],
                       )));
             },
