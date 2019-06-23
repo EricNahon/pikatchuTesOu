@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../model/pokemon.dart';
-import '../../ui/pages/details_page.dart';
+import '../../ui/pages/details_page_portrait.dart';
 
 class PokeSearch extends SearchDelegate {
 
@@ -84,7 +84,7 @@ class PokeSearch extends SearchDelegate {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => DetailsPage(
+                      builder: (context) => DetailsPagePortrait(
                         pokemon: poko[position],
                       )));
             },
@@ -147,7 +147,7 @@ class PokeSearch extends SearchDelegate {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => DetailsPage(
+                      builder: (context) => DetailsPagePortrait(
                         pokemon: poko[position],
                       )));
             },

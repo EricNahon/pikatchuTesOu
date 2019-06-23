@@ -6,9 +6,10 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:math';
 
-import '../ui/thirdparty/fancybottomanim/fancy_bottom_navigation.dart';
-import '../ui/pages/details_page.dart';
+import '../ui/pages/details_page_portrait.dart';
+import '../ui/pages/details_page_landscape.dart';
 import '../ui/pages/found_page.dart';
+import '../ui/ui_helper.dart';
 
 import 'constants.dart';
 import 'pokemon.dart';
@@ -127,8 +128,14 @@ class AppState with ChangeNotifier {
       player.play('sounds/PikaPala02.mp3');
       Navigator.push(
         ctx,
+        UIHelper.isPortrait(ctx: ctx) ?
         MaterialPageRoute(
-          builder: (context) => DetailsPage(
+          builder: (context) => DetailsPagePortrait(
+            pokemon: poke,
+          ),
+        ) :
+        MaterialPageRoute(
+          builder: (context) => DetailsPageLandscape(
             pokemon: poke,
           ),
         ),

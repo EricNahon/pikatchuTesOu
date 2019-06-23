@@ -45,3 +45,9 @@ const kBMITextStyle = TextStyle (
 const kBodyTextStyle = TextStyle (
   fontSize: 22.0,
 );
+
+const kGameHowTo = '''
+6 pokemons choisis au hasard s'affichent à l'écran.
+Derrière un seul de l'un deux se cache Pikachu.
+Touche le pokemon de ton choix pour voir si Pikachu se cache derrière lui.
+''';

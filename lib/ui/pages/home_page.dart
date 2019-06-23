@@ -2,13 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:audioplayers/audio_cache.dart';
 
-import '../thirdparty/fancybottomanim/fancy_bottom_navigation.dart';
-
 import '../../model/constants.dart';
 import '../../model/app_state.dart';
 import '../components/poke_quizz.dart';
 import '../components/circular_progress.dart';
 import 'about_page.dart';
+import 'info_page.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key key, this.header}) : super(key: key);
@@ -38,7 +37,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          widget.header,
+          kTitle,
           style: TextStyle(
             color: Colors.white,
           ),
@@ -62,7 +61,14 @@ class _HomePageState extends State<HomePage> {
           children: <Widget>[
             IconButton(
               icon: Icon(Icons.help_outline),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => InfoPage(),
+                  ),
+                );
+              },
             ),
             IconButton(
               icon: Icon(Icons.info_outline),
@@ -95,36 +101,5 @@ class _HomePageState extends State<HomePage> {
       default:
         return PokeQuizz();
     }
-  }
-
-  //Function to Show Alert Dialog for showing app details
-  void _showAlertInfo(BuildContext context) {
-    var alert = new AlertDialog(
-      title: Text("PokeNils"),
-      content: Row(
-        children: <Widget>[
-          Image.asset(
-            'assets/images/ApitepBearLogo.png',
-            fit: BoxFit.fill,
-            width: 60.0,
-            height: 60.0,
-          ),
-          SizedBox(
-            width: 15.0,
-          ),
-          Text("Made by Apitep"),
-        ],
-      ),
-      actions: <Widget>[
-        FlatButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text("OK"),
-        )
-      ],
-    );
-
-    showDialog(context: context, builder: (context) => alert);
   }
 }

@@ -1,7 +1,7 @@
 name: pikateou
 description: A find Pikachu game
 
-version: 0.2.5
+version: 0.2.6
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
