@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
+import 'package:package_info/package_info.dart';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -14,9 +15,13 @@ import 'pokemon.dart';
 
 class AppState with ChangeNotifier {
   AppState() {
+    getAppInfo();
     fetchData();
   }
 
+  PackageInfo packageInfo;
+
+  String appVersion;
   static AudioCache player = AudioCache();
 
   int currentBottomTabIndex = 0;
@@ -54,6 +59,12 @@ class AppState with ChangeNotifier {
   bool get isFetching => _isFetching;
   set isFetching(bool newValue) {
     _isFetching = newValue;
+    notifyListeners();
+  }
+
+  Future getAppInfo() async {
+    packageInfo = await PackageInfo.fromPlatform();
+    appVersion = packageInfo.version;
     notifyListeners();
   }
 

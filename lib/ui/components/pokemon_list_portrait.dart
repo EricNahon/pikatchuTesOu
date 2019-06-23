@@ -9,11 +9,13 @@ class PokemonListPortrait extends StatelessWidget {
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context);
 
-    return Column(
-      children: <Widget>[
+    return Center(
+      child:
         GridView.count(
           shrinkWrap: true,
           crossAxisCount: 2,
+          childAspectRatio: MediaQuery.of(context).size.width > 600 ? 1.14 : 1.0,
+          padding: MediaQuery.of(context).size.width > 600 ?  const EdgeInsets.all(20.0) : const EdgeInsets.all(0.0),
           children: appState.pokeDex.pokemons
               .map((poke) => Padding(
                     padding: const EdgeInsets.all(1.0),
@@ -22,29 +24,19 @@ class PokemonListPortrait extends StatelessWidget {
                         appState.checkHiddenPikachu(context, poke, appState.animRewardUrl);
                       },
                       child: Card(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: <Widget>[
-                            Hero(
-                              tag: poke.img,
-                              child: Container(
-                                height: MediaQuery.of(context).size.height / 5,
-                                decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                    fit: BoxFit.contain,
-                                    image: NetworkImage(poke.img),
-                                  ),
-                                ),
-                              ),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              fit: BoxFit.contain,
+                              image: NetworkImage(poke.img),
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     ),
                   ))
               .toList(),
         ),
-      ],
     );
   }
 }

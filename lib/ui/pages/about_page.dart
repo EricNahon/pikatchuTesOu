@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../model/app_state.dart';
 import '../../model/constants.dart';
 
 class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    AppState appState = Provider.of<AppState>(context);
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -36,7 +40,24 @@ class AboutPage extends StatelessWidget {
           SizedBox(
             height: 1.0,
           ),
-          Center(child: Text("Made by Apitep", textAlign: TextAlign.center)),
+          Column(
+            children: <Widget>[
+              Center(
+                child: Text(
+                  "Made by Apitep",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 15.0, fontWeight: FontWeight.w900),
+                ),
+              ),
+              Center(
+                child: Text(
+                  "version ${appState.appVersion}",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 12.0, fontWeight: FontWeight.normal),
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
