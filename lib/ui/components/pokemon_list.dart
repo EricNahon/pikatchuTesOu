@@ -16,27 +16,28 @@ class PokemonList extends StatelessWidget {
 
     return GridView.count(
       shrinkWrap: true,
-      crossAxisCount: 2,
+      crossAxisCount: MediaQuery.of(context).size.width <= 400.0 ? 2 : MediaQuery.of(context).size.width >= 1000.0 ? 6 : 4,
       children: appState.pokeDex.pokemons
           .map((poke) => Padding(
-                padding: const EdgeInsets.all(2.0),
+                padding: const EdgeInsets.all(1.0),
                 child: InkWell(
                   onTap: () {
                     checkHiddenPikachu(context, poke, player, appState.animRewardUrl);
                   },
                   child: Card(
                     child: Column(
-                      mainAxisAlignment:
-                          MainAxisAlignment.spaceEvenly,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: <Widget>[
                         Hero(
                           tag: poke.img,
                           child: Container(
-                            height: 100.0,
-                            width: 100.0,
+                            height: MediaQuery.of(context).size.height > MediaQuery.of(context).size.width ? MediaQuery.of(context).size.height / 6 : MediaQuery.of(context).size.height / 4,
                             decoration: BoxDecoration(
-                                image: DecorationImage(
-                                    image: NetworkImage(poke.img))),
+                              image: DecorationImage(
+                                fit: BoxFit.contain,
+                                image: NetworkImage(poke.img),
+                              ),
+                            ),
                           ),
                         ),
                         Text(
@@ -68,8 +69,7 @@ class PokemonList extends StatelessWidget {
       );
     } else {
       sound.play('sounds/applause.mp3');
-      Navigator.push(ctx,
-          MaterialPageRoute(builder: (context) => FoundPage(animRewardUrl: rewardUrl,pokemon: poke)));
+      Navigator.push(ctx, MaterialPageRoute(builder: (context) => FoundPage(animRewardUrl: rewardUrl, pokemon: poke)));
     }
   }
 }

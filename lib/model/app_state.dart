@@ -4,6 +4,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:math';
 
+import '../ui/thirdparty/fancybottomanim/fancy_bottom_navigation.dart';
+
 import 'constants.dart';
 import 'pokemon.dart';
 
@@ -13,6 +15,8 @@ class AppState with ChangeNotifier {
   }
 
   static AudioCache player = AudioCache();
+
+  int currentBottomTabIndex = 0;
 
   PokeDex _pokeDex;
   PokeDex get pokeDex => _pokeDex;

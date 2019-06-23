@@ -6,12 +6,21 @@ class AboutPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        title: Center(child: Text('A propos')),
+        centerTitle: true,
+        title: Text(
+          kTitle,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+        iconTheme: IconThemeData(color: Colors.white),
+        actions: <Widget>[],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: <Widget>[
           Text(
             'PikaTeOu',
@@ -20,12 +29,12 @@ class AboutPage extends StatelessWidget {
           ),
           Image.asset(
             'assets/images/ApitepBearLogo.png',
-            fit: BoxFit.fitHeight,
-            width: 120.0,
-            height: 120.0,
+            fit: BoxFit.contain,
+            width: 150.0,
+            height: 150.0,
           ),
           SizedBox(
-            height: 15.0,
+            height: 1.0,
           ),
           Center(child: Text("Made by Apitep", textAlign: TextAlign.center)),
         ],

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:audioplayers/audio_cache.dart';
 
+import '../thirdparty/fancybottomanim/fancy_bottom_navigation.dart';
+
 import '../../model/constants.dart';
 import '../../model/app_state.dart';
 import '../components/poke_quizz.dart';
@@ -28,6 +30,8 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final appState = Provider.of<AppState>(context);
 
+    GlobalKey bottomNavigationKey = GlobalKey();
+
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       //AppBar
@@ -40,10 +44,28 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         iconTheme: IconThemeData(color: Colors.white),
-        actions: <Widget>[
-          IconButton(
-              icon: Icon(Icons.search),
-              color: Colors.white,
+        actions: <Widget>[],
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        child: const Icon(Icons.refresh),
+        onPressed: () {
+          appState.fetchData();
+        },
+      ),
+      bottomNavigationBar: BottomAppBar(
+        shape: CircularNotchedRectangle(),
+        notchMargin: 4.0,
+        child: new Row(
+          mainAxisSize: MainAxisSize.max,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: <Widget>[
+            IconButton(
+              icon: Icon(Icons.help_outline),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: Icon(Icons.info_outline),
               onPressed: () {
                 Navigator.push(
                   context,
@@ -51,34 +73,28 @@ class _HomePageState extends State<HomePage> {
                     builder: (context) => AboutPage(),
                   ),
                 );
-              })
-        ],
-      ),
-
-      drawer: Drawer(
-        child: ListView(
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                title: Text(kTitle,
-                    style:
-                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold)),
-              ),
-            ),
-            ListTile(
-              onTap: () {
-                _showAlertInfo(context);
               },
-              title: Text("A propos"),
-              leading: Icon(Icons.info),
             ),
           ],
         ),
       ),
 
-      body: appState.isFetching ? CircularProgress() : PokeQuizz(),
+      body: _getBody(appState.currentBottomTabIndex, appState.isFetching),
     );
+  }
+
+  Widget _getBody(int tabIndex, bool isFetching) {
+    switch (tabIndex) {
+      case 0:
+        if (isFetching) {
+          return CircularProgress();
+        }
+        return PokeQuizz();
+      case 1:
+        return AboutPage();
+      default:
+        return PokeQuizz();
+    }
   }
 
   //Function to Show Alert Dialog for showing app details
