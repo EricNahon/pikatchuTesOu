@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart';
 import 'package:audioplayers/audio_cache.dart';
 import 'package:http/http.dart' as http;
@@ -5,6 +6,8 @@ import 'dart:convert';
 import 'dart:math';
 
 import '../ui/thirdparty/fancybottomanim/fancy_bottom_navigation.dart';
+import '../ui/pages/details_page.dart';
+import '../ui/pages/found_page.dart';
 
 import 'constants.dart';
 import 'pokemon.dart';
@@ -108,4 +111,20 @@ class AppState with ChangeNotifier {
     notifyListeners();
   }
 
+  checkHiddenPikachu(BuildContext ctx, Pokemon poke, String rewardUrl) {
+    if (!poke.hidingPikachu) {
+      player.play('sounds/PikaPala02.mp3');
+      Navigator.push(
+        ctx,
+        MaterialPageRoute(
+          builder: (context) => DetailsPage(
+            pokemon: poke,
+          ),
+        ),
+      );
+    } else {
+      player.play('sounds/applause.mp3');
+      Navigator.push(ctx, MaterialPageRoute(builder: (context) => FoundPage(animRewardUrl: rewardUrl, pokemon: poke)));
+    }
+  }
 }
