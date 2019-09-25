@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 
 import 'model/app_state.dart';
 import 'model/constants.dart';
-import 'ui/pages/home_page.dart';
+import 'ui/pages/start_page.dart';
 
 void main() => runApp(Application());
 
@@ -15,9 +15,7 @@ class Application extends StatelessWidget {
       child: MaterialApp(
         title: kTitle,
         debugShowCheckedModeBanner: false,
-        home: HomePage(
-          header: kTitle,
-        ),
+        home: StartPage(),
         theme: ThemeData(
           brightness: Brightness.light,
           primaryColor: Colors.cyan,
